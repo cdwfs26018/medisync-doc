@@ -1,5 +1,14 @@
 # MediSync Documentation
 
+## Team Members
+- cdwfs26-018
+- cdwfs26-010
+- cdwfs26-012
+
+Technical documentation for MediSync application.
+
+# MediSync Documentation
+
 Technical documentation for MediSync application.
 
 ## Project Overview
