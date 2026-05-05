@@ -1,58 +1,57 @@
-# Mise en œuvre technique
+## Questions techniques
 
-## T1
+### T1
+Le protocole de communication utilisé en standard par le client Git est SSH (Secure Shell).
 
-Le protocole de communication utilisé en standard par le client Git est **HTTPS** (HyperText Transfer Protocol Secure).
+### T2
+Le protocole utilisé en secours est HTTPS (HyperText Transfer Protocol Secure), notamment lorsque SSH n’est pas disponible (par exemple si le port 22 est bloqué).
 
-## T2
-
-Le protocole utilisé en secours est **SSH** (Secure Shell), souvent utilisé comme alternative plus sécurisée et sans saisie de mot de passe après configuration.
-
-## T3
-
+### T3
 Oui, il est possible de synchroniser un dépôt local avec plusieurs dépôts distants.
 
-Pour cela, on peut ajouter plusieurs remotes avec la commande :
-
-```bash
+Cela se fait avec la commande :
 git remote add <nom> <url>
-```
 
-Ensuite, on peut pousser ou récupérer depuis chacun d'eux avec :
+Exemple :
+git remote add origin https://github.com/user/repo.git  
+git remote add backup https://gitlab.com/user/repo.git
 
-```bash
-git push <nom>
-git pull <nom>
-```
+Cela permet de pousser et récupérer du code depuis plusieurs dépôts.
 
-## T4
+### T4
+La commande git revert ne supprime pas le commit.
 
-La commande `git revert` crée un nouveau commit qui annule les modifications introduites par un commit précédent.
-
-Le commit initial reste dans l'historique, mais ses effets sont inversés, ce qui permet de conserver un historique propre sans réécriture.
+Elle crée un nouveau commit qui annule les modifications du commit précédent.  
+L’historique est conservé, ce qui rend cette méthode sûre en travail collaboratif.
 
 ---
 
-# Mise en œuvre méthodologique
+## Questions méthodologiques
 
-## M1
+### M1
+La principale différence entre git merge et git rebase concerne la gestion de l’historique.
 
-La principale différence est que :
+git merge conserve l’historique complet et crée un commit de fusion.  
+git rebase réécrit l’historique pour obtenir une suite de commits linéaire sans commit de fusion.
 
-- `git merge` conserve l'historique tel quel et ajoute un commit de fusion
-- `git rebase` réécrit l'historique en rejouant les commits sur une autre base, ce qui donne un historique plus linéaire
+### M2
+Une autre méthode de gestion de branches est Git Flow.
 
-## M2
+Git Flow utilise plusieurs branches longues :
+- main
+- develop
+- feature
+- release
+- hotfix
 
-Une autre méthode est **Git Flow**.
+Elle est plus structurée et plus complexe que GitHub Flow, qui est plus simple et repose principalement sur une branche principale et des branches de fonctionnalités.
 
-Contrairement à GitHub Flow (simple et basé sur une branche principale), Git Flow utilise plusieurs branches (`main`, `develop`, `feature`, `release`, `hotfix`) pour structurer le développement, ce qui est plus adapté aux projets complexes avec des cycles de release.
+### M3
+L’objectif d’une Pull Request (ou Merge Request) est de permettre aux membres de l’équipe de :
 
-## M3
+- relire le code
+- discuter des modifications
+- garantir la qualité du code
+- valider les fonctionnalités avant intégration dans la branche principale
 
-L'objectif d'une **pull request** (ou merge request) est de :
-
-- proposer des modifications avant leur intégration
-- permettre une revue de code par les autres membres de l'équipe
-- discuter des changements
-- valider automatiquement (tests, CI) avant fusion
+Cela améliore la collaboration et limite les erreurs.
