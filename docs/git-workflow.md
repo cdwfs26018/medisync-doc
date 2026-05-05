@@ -1,3 +1,23 @@
+
+## Contrainte réseau — Port SSH 22 bloqué
+
+### Problème
+Le réseau de l'établissement bloque le port 22 (port SSH par défaut),
+ce qui empêche de pousser du code vers GitHub en utilisant SSH normalement.
+
+### Solution
+Nous avons utilisé HTTPS à la place de SSH pour communiquer avec GitHub.
+
+### Configuration utilisée
+```bash
+git remote set-url origin https://github.com/cdwfs26018/medisync-doc.git
+```
+
+Cette commande change l'URL du dépôt distant de SSH vers HTTPS,
+contournant ainsi le blocage du port 22.
+
+
+
 ## Questions techniques
 
 ### T1
